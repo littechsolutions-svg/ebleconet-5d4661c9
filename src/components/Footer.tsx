@@ -1,9 +1,11 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   const links = [
-    { name: "About the Trybe", href: "#about" },
-    { name: "Roadmap", href: "#roadmap" },
-    { name: "Contact Support", href: "#support" },
-    { name: "Terms and Conditions", href: "#terms" },
+    { name: "About the Trybe", href: "/about-trybe" },
+    { name: "Roadmap", href: "/roadmap" },
+    { name: "Contact Support", href: "/contact-support" },
+    { name: "Terms and Conditions", href: "/terms" },
   ];
 
   return (
@@ -11,13 +13,13 @@ const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="flex flex-wrap justify-center gap-6 sm:gap-8 mb-8">
           {links.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
         

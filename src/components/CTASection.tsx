@@ -17,8 +17,11 @@ const CTASection = () => {
           <Button 
             size="lg" 
             className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-full glow-cyan hover:glow-magenta transition-all duration-300 transform hover:scale-105"
+            asChild
           >
-            Join the X Family
+            <a href="https://t.me/+6OQwI1FqtZY5NDY0" target="_blank" rel="noopener noreferrer">
+              Join the Community
+            </a>
           </Button>
         </div>
       </div>
