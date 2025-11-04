@@ -8,7 +8,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const Header = () => {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+const Header = ({ onMenuClick }: HeaderProps) => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,7 +29,10 @@ const Header = () => {
           </Link>
           
           <DropdownMenu>
-            <DropdownMenuTrigger className="border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary glow-cyan transition-all duration-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary">
+            <DropdownMenuTrigger 
+              onClick={onMenuClick}
+              className="border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary glow-cyan transition-all duration-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
+            >
               <Menu className="h-6 w-6" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-card border-border glow-cyan">

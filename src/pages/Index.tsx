@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
 import CTASection from "@/components/CTASection";
@@ -7,14 +7,32 @@ import LoadingScreen from "@/components/LoadingScreen";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [loadingDuration, setLoadingDuration] = useState(15000);
+
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('hasVisitedEblecoTrybe');
+    if (hasVisited) {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleLoadingComplete = () => {
+    localStorage.setItem('hasVisitedEblecoTrybe', 'true');
+    setIsLoading(false);
+  };
+
+  const handleMenuClick = () => {
+    setLoadingDuration(3000);
+    setIsLoading(true);
+  };
 
   if (isLoading) {
-    return <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />;
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} duration={loadingDuration} />;
   }
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <Header onMenuClick={handleMenuClick} />
       
       <main className="pt-16">
         <HeroCard />
