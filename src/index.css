@@ -176,6 +176,108 @@ All colors MUST be HSL.
     }
   }
 
+  .animate-storm-reveal {
+    animation: storm-reveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes storm-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) translateX(-20px) rotate(-3deg) scale(0.95);
+      filter: blur(8px);
+    }
+    50% {
+      opacity: 0.7;
+      filter: blur(2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(0) rotate(0deg) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  .animate-diagonal-unfold {
+    animation: diagonal-unfold 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+  }
+
+  @keyframes diagonal-unfold {
+    0% {
+      opacity: 0;
+      transform: translateX(-40px) translateY(-40px) rotate(-5deg) scale(0.9);
+      filter: blur(5px);
+    }
+    60% {
+      opacity: 0.8;
+      transform: translateX(5px) translateY(5px) rotate(1deg) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  .animate-scatter-in {
+    animation: scatter-in 1.1s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    opacity: 0;
+  }
+
+  @keyframes scatter-in {
+    0% {
+      opacity: 0;
+      transform: translateX(60px) translateY(-30px) rotate(8deg) scale(0.8);
+      filter: blur(10px);
+    }
+    70% {
+      opacity: 0.9;
+      filter: blur(1px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  .animate-lightning-text {
+    animation: lightning-text 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes lightning-text {
+    0%, 20% {
+      opacity: 0;
+      text-shadow: 0 0 0 transparent;
+    }
+    25% {
+      opacity: 1;
+      text-shadow: 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary) / 0.5);
+    }
+    30% {
+      opacity: 0.4;
+    }
+    35% {
+      opacity: 1;
+      text-shadow: 0 0 15px hsl(var(--primary)), 0 0 30px hsl(var(--primary) / 0.4);
+    }
+    100% {
+      opacity: 1;
+      text-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+  .stagger-6 { animation-delay: 0.6s; }
+  .stagger-7 { animation-delay: 0.7s; }
+  .stagger-8 { animation-delay: 0.8s; }
+
   .raindrop {
     position: absolute;
     width: 2px;
