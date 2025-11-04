@@ -5,6 +5,7 @@ import { Brain, Sparkles, Waves } from "lucide-react";
 const HeroCard = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [showThirdCardMessage, setShowThirdCardMessage] = useState(false);
   const features = [
     {
       icon: Brain,
@@ -30,6 +31,12 @@ const HeroCard = () => {
         setShowMessage(true);
         setIsAnimating(false);
       }, 800);
+    }
+  };
+
+  const handleThirdCardClick = () => {
+    if (!showThirdCardMessage) {
+      setShowThirdCardMessage(true);
     }
   };
 
@@ -98,19 +105,76 @@ const HeroCard = () => {
           {features.map((feature, index) => (
             <div 
               key={index}
-              className="bg-card border border-border rounded-2xl p-6 glow-card hover:glow-magenta transition-all duration-500 group"
+              onClick={index === 2 ? handleThirdCardClick : undefined}
+              className={`bg-card border border-border rounded-2xl p-6 glow-card hover:glow-magenta transition-all duration-500 group relative overflow-hidden ${
+                index === 2 ? 'cursor-pointer' : ''
+              }`}
             >
-              <div className="flex justify-center mb-4">
-                <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-300">
-                  <feature.icon className="h-8 w-8 text-primary" />
+              {index === 1 && (
+                <div className="absolute inset-0 pointer-events-none">
+                  {[...Array(8)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="raindrop"
+                      style={{
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 2}s`,
+                        animationDuration: `${2 + Math.random() * 2}s`
+                      }}
+                    />
+                  ))}
                 </div>
-              </div>
-              <h3 className="text-xl font-semibold text-center mb-3 text-gradient">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-center text-sm leading-relaxed">
-                {feature.description}
-              </p>
+              )}
+              
+              {index === 2 && !showThirdCardMessage ? (
+                <>
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-300">
+                      <feature.icon className="h-8 w-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-3 text-gradient">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-center text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </>
+              ) : index === 2 && showThirdCardMessage ? (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-center mb-4 text-gradient animate-scale-in">
+                    Revisiting the Early Programming Window
+                  </h3>
+                  <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+                    <p className="animate-slide-in-left" style={{ animationDelay: "0.1s" }}>
+                      Between birth and roughly age seven, children's brains naturally operate in theta. They absorb beliefs, behaviors, and emotional patterns directly from their environment without analysis.
+                    </p>
+                    <p className="animate-slide-in-right" style={{ animationDelay: "0.3s" }}>
+                      Those early impressions form the "operating system" we still run as adults. Self-hypnosis recreates that same neuroplastic openness — allowing us to return to the code level and consciously install new programs.
+                    </p>
+                    <p className="animate-slide-in-left" style={{ animationDelay: "0.5s" }}>
+                      Let's just say our brains are a set of codes or a set of programs that run automatically without any bit of our awareness. And to what volume does these programs run?
+                    </p>
+                    <p className="animate-slide-in-right font-semibold text-primary" style={{ animationDelay: "0.7s" }}>
+                      Well, there's enough neuroscience that shows that 95 percent of our everyday lives depends solely on the subconscious while the other 5 percent depends on our conscious mind.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="flex justify-center mb-4">
+                    <div className="p-3 rounded-full bg-primary/10 group-hover:bg-primary/20 transition-all duration-300">
+                      <feature.icon className="h-8 w-8 text-primary" />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-center mb-3 text-gradient">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-center text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </>
+              )}
             </div>
           ))}
         </div>
