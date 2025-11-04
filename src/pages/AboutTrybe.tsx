@@ -14,51 +14,51 @@ const AboutTrybe = () => {
         </Link>
 
         <div className="bg-card border border-border rounded-3xl p-8 sm:p-12 glow-card">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8 animate-pulse-glow">
             About the Trybe
           </h1>
 
           <div className="space-y-6 text-muted-foreground leading-relaxed">
-            <p className="text-lg">
+            <p className="text-lg animate-pulse-glow stagger-1">
               Here, we don't chase motivation.<br />
               We reprogram belief.<br />
               We don't fight our thoughts.<br />
               We rewire them to serve our truth.
             </p>
 
-            <p>
+            <p className="animate-pulse-glow stagger-2">
               Each member of the Ebleco Trybe is a conscious creator — walking the fine line between science and spirit, dream and discipline. Through guided self-hypnosis, we learn to reshape subconscious patterns, heal emotional blockages, and awaken a new level of inner clarity.
             </p>
 
-            <p>
+            <p className="animate-pulse-glow stagger-3">
               When you join the Trybe, you don't just listen to affirmations —<br />
               <span className="font-semibold text-primary">you become them.</span><br />
               You don't try to change your life —<br />
               <span className="font-semibold text-primary">you allow life to change through you.</span>
             </p>
 
-            <p>
+            <p className="animate-pulse-glow stagger-4">
               We're explorers of the mind.<br />
               Believers in calm power.<br />
               Students of stillness.<br />
               Creators of new realities.
             </p>
 
-            <p className="text-lg font-semibold text-foreground">
+            <p className="text-lg font-semibold text-foreground animate-pulse-glow stagger-5">
               Welcome to the Trybe —<br />
               where you remember that you were never broken,<br />
               only unprogrammed.
             </p>
 
             <section className="mt-12 space-y-6">
-              <div className="border-l-4 border-primary pl-6">
+              <div className="border-l-4 border-primary pl-6 animate-pulse-glow stagger-6">
                 <h2 className="text-2xl font-bold text-foreground mb-3">✦ Our Vision</h2>
                 <p>
                   To awaken a new generation of creators who understand the power of their subconscious mind — and use it to design peace, purpose, and prosperity.
                 </p>
               </div>
 
-              <div className="border-l-4 border-secondary pl-6">
+              <div className="border-l-4 border-secondary pl-6 animate-pulse-glow stagger-7">
                 <h2 className="text-2xl font-bold text-foreground mb-3">✦ Our Philosophy</h2>
                 <p>
                   Transformation doesn't require effort. It requires permission.<br />
@@ -66,7 +66,7 @@ const AboutTrybe = () => {
                 </p>
               </div>
 
-              <div className="border-l-4 border-accent pl-6">
+              <div className="border-l-4 border-accent pl-6 animate-pulse-glow stagger-8">
                 <h2 className="text-2xl font-bold text-foreground mb-3">✦ What We Do</h2>
                 <ul className="space-y-2">
                   <li>• Guide members through self-hypnosis journeys designed for real mental rewiring</li>

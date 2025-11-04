@@ -14,12 +14,12 @@ const Roadmap = () => {
         </Link>
 
         <div className="bg-card border border-border rounded-3xl p-8 sm:p-12 glow-card">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8 animate-shimmer-reveal">
             From Information to Transformation: Accessing the Subconscious Through Theta
           </h1>
 
           <div className="space-y-8 text-muted-foreground leading-relaxed">
-            <section>
+            <section className="animate-shimmer-reveal stagger-1">
               <h2 className="text-2xl font-bold text-foreground mb-4">1. The Illusion of Change Through Knowledge</h2>
               <p>
                 Most people begin their personal-growth journey with books, podcasts, and courses. They highlight passages, quote famous teachers, and accumulate insights. Yet weeks later, their behaviors remain unchanged.
@@ -35,7 +35,7 @@ const Roadmap = () => {
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-2">
               <p>
                 When we are awake and reading, the brain is in beta. When we enter self-hypnosis, it drifts toward theta. Theta is the state where the critical filter of the mind relaxes, and new ideas can be felt and accepted as reality.
               </p>
@@ -56,7 +56,7 @@ const Roadmap = () => {
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-3">
               <h2 className="text-2xl font-bold text-foreground mb-4">Revisiting the Early Programming Window</h2>
               <p>
                 Between birth and roughly age seven, children's brains naturally operate in theta. They absorb beliefs, behaviors, and emotional patterns directly from their environment without analysis. Those early impressions form the "operating system" we still run as adults. Self-hypnosis recreates that same neuroplastic openness — allowing us to return to the code level and consciously install new programs.
@@ -72,7 +72,7 @@ const Roadmap = () => {
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-4">
               <p>In Ebleco, we don't do our affirmations standing before a mirror.</p>
               <p className="mt-2">In Ebleco, we don't do our affirmations while reading a favorite quote or a self help book.</p>
               <p className="mt-2">We don't do it while eating chocolate in a supermarket?</p>
@@ -89,13 +89,13 @@ const Roadmap = () => {
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-5">
               <p>
                 Evening integration – practice just before sleep, when the brain naturally drifts through theta. Over time, these rituals shift knowledge into identity.
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-6">
               <h2 className="text-2xl font-bold text-foreground mb-4">7. The Shift From Knowing to Being</h2>
               <p>
                 Transformation is complete when an idea moves from mental concept to automatic response. That moment — when calm confidence or compassion arises spontaneously — signals that a new neural network has formed. You no longer think the change; you are the change.
@@ -105,7 +105,7 @@ const Roadmap = () => {
               </p>
             </section>
 
-            <section>
+            <section className="animate-shimmer-reveal stagger-7">
               <h2 className="text-2xl font-bold text-foreground mb-4">8. Closing Insight</h2>
               <p>Reading awakens curiosity.</p>
               <p className="mt-2">Practice awakens circuitry.</p>

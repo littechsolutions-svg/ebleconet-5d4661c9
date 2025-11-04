@@ -31,14 +31,14 @@ const MeetFounder = () => {
             </div>
           </div>
           
-          <h1 className="text-6xl font-bold text-gradient mb-4">404</h1>
-          <h2 className="text-3xl font-semibold text-foreground mb-4">Page Not Found</h2>
+          <h1 className="text-6xl font-bold text-gradient mb-4 animate-spiral-in">404</h1>
+          <h2 className="text-3xl font-semibold text-foreground mb-4 animate-spiral-in stagger-1">Page Not Found</h2>
           
-          <p className="text-lg text-muted-foreground mb-8">
+          <p className="text-lg text-muted-foreground mb-8 animate-spiral-in stagger-2">
             This page is currently under construction. The founder's story will be revealed soon.
           </p>
           
-          <div className="bg-background/50 border border-primary/30 rounded-xl p-6 glow-cyan">
+          <div className="bg-background/50 border border-primary/30 rounded-xl p-6 glow-cyan animate-spiral-in stagger-3">
             <p className="text-primary text-lg font-medium">
               Redirecting to homepage in {countdown} seconds...
             </p>

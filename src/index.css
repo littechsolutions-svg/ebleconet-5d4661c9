@@ -278,6 +278,134 @@ All colors MUST be HSL.
   .stagger-7 { animation-delay: 0.7s; }
   .stagger-8 { animation-delay: 0.8s; }
 
+  /* Pulse-glow animation - dims and glows all at once */
+  .animate-pulse-glow {
+    animation: pulse-glow 8s ease-in-out forwards;
+    opacity: 0.1;
+  }
+
+  @keyframes pulse-glow {
+    0%, 80% {
+      opacity: 0.1;
+      text-shadow: 0 0 0 transparent;
+    }
+    85% {
+      opacity: 0.3;
+      text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    }
+    90% {
+      opacity: 1;
+      text-shadow: 0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--secondary) / 0.4);
+    }
+    95% {
+      opacity: 0.6;
+      text-shadow: 0 0 15px hsl(var(--primary) / 0.4);
+    }
+    100% {
+      opacity: 1;
+      text-shadow: 0 0 8px hsl(var(--primary) / 0.2);
+    }
+  }
+
+  /* Shimmer-reveal animation */
+  .animate-shimmer-reveal {
+    animation: shimmer-reveal 8.4s ease-out forwards;
+    opacity: 0.1;
+  }
+
+  @keyframes shimmer-reveal {
+    0%, 83% {
+      opacity: 0.1;
+      transform: translateY(20px);
+      filter: blur(6px) brightness(0.5);
+    }
+    88% {
+      opacity: 0.5;
+      filter: blur(3px) brightness(1.2);
+    }
+    94% {
+      opacity: 1;
+      filter: blur(0) brightness(1.5);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0) brightness(1);
+    }
+  }
+
+  /* Fade-in-wave animation */
+  .animate-fade-in-wave {
+    animation: fade-in-wave 8.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    opacity: 0.1;
+  }
+
+  @keyframes fade-in-wave {
+    0%, 84% {
+      opacity: 0.1;
+      transform: translateY(40px) scale(0.98);
+    }
+    92% {
+      opacity: 0.8;
+      transform: translateY(-5px) scale(1.01);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Spiral-in animation - no glow, just movement */
+  .animate-spiral-in {
+    animation: spiral-in 7.8s ease-out forwards;
+    opacity: 0.1;
+  }
+
+  @keyframes spiral-in {
+    0%, 81% {
+      opacity: 0.1;
+      transform: rotate(180deg) scale(0.5);
+      filter: blur(8px);
+    }
+    95% {
+      opacity: 1;
+      transform: rotate(-5deg) scale(1.05);
+      filter: blur(0);
+    }
+    100% {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  /* Electric-flash animation - quick reveal */
+  .animate-electric-flash {
+    animation: electric-flash 7.5s ease-in-out forwards;
+    opacity: 0.1;
+  }
+
+  @keyframes electric-flash {
+    0%, 78% {
+      opacity: 0.1;
+    }
+    82% {
+      opacity: 1;
+      text-shadow: 0 0 40px hsl(var(--accent) / 0.8), 0 0 80px hsl(var(--accent) / 0.5);
+    }
+    86% {
+      opacity: 0.2;
+    }
+    90% {
+      opacity: 1;
+      text-shadow: 0 0 25px hsl(var(--accent) / 0.6);
+    }
+    100% {
+      opacity: 1;
+      text-shadow: none;
+    }
+  }
+
   .raindrop {
     position: absolute;
     width: 2px;

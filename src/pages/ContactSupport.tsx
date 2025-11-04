@@ -4,8 +4,70 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Invalid email address").max(255),
+  message: z.string().trim().min(10, "Message must be at least 10 characters").max(2000),
+});
 
 const ContactSupport = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      message: formData.get("message") as string,
+    };
+
+    try {
+      const validatedData = contactSchema.parse(data);
+      
+      const response = await fetch("https://formspree.io/f/mjkvjnyo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(validatedData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        e.currentTarget.reset();
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          variant: "destructive",
+          title: "Invalid information",
+          description: error.errors[0].message,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Failed to send message",
+          description: "Please check your information and try again.",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -59,9 +121,9 @@ const ContactSupport = () => {
             </a>
           </div>
 
-          <div className="border-t border-border pt-8">
+          <div className="border-t border-border pt-8 animate-spiral-in">
             <h2 className="text-2xl font-bold text-foreground mb-6">Send us a Message</h2>
-            <form action="https://formspree.io/f/mblanqjl" method="POST" className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Label htmlFor="name">Name *</Label>
                 <Input 
@@ -97,12 +159,13 @@ const ContactSupport = () => {
                 />
               </div>
 
-              <Button 
-                type="submit" 
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-cyan"
-              >
-                Send Message
-              </Button>
+            <Button 
+              type="submit" 
+              disabled={isSubmitting}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-cyan disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
             </form>
           </div>
         </div>

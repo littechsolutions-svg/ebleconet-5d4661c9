@@ -11,8 +11,94 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { z } from "zod";
+
+const onboardingSchema = z.object({
+  name: z.string().trim().min(1, "Name is required").max(100),
+  email: z.string().trim().email("Invalid email address").max(255),
+  phone: z.string().trim().min(10, "Phone number must be at least 10 digits").max(20),
+  university: z.string().min(1, "Please select a university"),
+  course: z.string().min(1, "Please select a course"),
+  gender: z.string().min(1, "Please select gender"),
+  occupation: z.string().trim().min(1, "Occupation is required").max(200),
+  country: z.string().min(1, "Please select a country"),
+  state: z.string().min(1, "Please select a state"),
+  learningMode: z.string().min(1, "Please select learning mode"),
+  experience: z.string().min(1, "Please select your experience level"),
+  selfGrowth: z.string().trim().min(10, "Please share at least 10 characters").max(2000),
+  mission: z.string().trim().min(10, "Please share at least 10 characters").max(2000),
+  referral: z.string().trim().min(1, "Please tell us how you heard about us").max(200),
+  contactMethod: z.string().min(1, "Please select a contact method"),
+});
 
 const Onboarding = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      university: formData.get("university") as string,
+      course: formData.get("course") as string,
+      gender: formData.get("gender") as string,
+      occupation: formData.get("occupation") as string,
+      country: formData.get("country") as string,
+      state: formData.get("state") as string,
+      learningMode: formData.get("learning-mode") as string,
+      experience: formData.get("experience") as string,
+      selfGrowth: formData.get("self-growth") as string,
+      mission: formData.get("mission") as string,
+      referral: formData.get("referral") as string,
+      contactMethod: formData.get("contact-method") as string,
+    };
+
+    try {
+      const validatedData = onboardingSchema.parse(data);
+      
+      const response = await fetch("https://formspree.io/f/mblanqjl", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(validatedData),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Successfully submitted!",
+          description: "Thank you for joining the Ebleco Trybe. We'll be in touch soon.",
+        });
+        e.currentTarget.reset();
+      } else {
+        throw new Error("Submission failed");
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast({
+          variant: "destructive",
+          title: "Invalid information",
+          description: error.errors[0].message,
+        });
+      } else {
+        toast({
+          variant: "destructive",
+          title: "Submission failed",
+          description: "Please check your information and try again.",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -24,11 +110,11 @@ const Onboarding = () => {
         </Link>
 
         <div className="bg-card border border-border rounded-3xl p-8 sm:p-12 glow-card">
-          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8">
+          <h1 className="text-4xl sm:text-5xl font-bold text-gradient mb-8 animate-electric-flash">
             Ebleco Trybe Onboarding Form
           </h1>
 
-          <form action="https://formspree.io/f/mblanqjl" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6 animate-electric-flash stagger-1">
             <div>
               <Label htmlFor="name">Name *</Label>
               <Input id="name" name="name" required className="bg-background/50 border-border" />
@@ -227,9 +313,10 @@ const Onboarding = () => {
 
             <Button 
               type="submit" 
-              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-cyan text-lg py-6"
+              disabled={isSubmitting}
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground glow-cyan text-lg py-6 disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           </form>
         </div>
