@@ -60,6 +60,10 @@ const HeroCard = () => {
             
             {!showMessage ? (
               <>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-8 tracking-tight" style={{ fontFamily: "'Futura', 'Helvetica Neue', sans-serif", color: 'white', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  intellect pro circle
+                </h2>
+                
                 <div className="flex justify-center mb-8">
               <div className="relative">
                 <img 
@@ -71,9 +75,9 @@ const HeroCard = () => {
               </div>
             </div>
             
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-6 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-6 tracking-tight">
               Cross-Mind Collaboration
-            </h2>
+            </h3>
             
                 <p className="text-lg sm:text-xl text-muted-foreground text-center leading-relaxed max-w-2xl mx-auto">
                   Connect explorers of the mind, self-hypnosis practitioners, and awareness seekers 

@@ -1,6 +1,7 @@
 import { Menu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "@/assets/ebleco-logo.png";
+import BackgroundMusic from "./BackgroundMusic";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +14,9 @@ interface HeaderProps {
 }
 
 const Header = ({ onMenuClick }: HeaderProps) => {
+  const location = useLocation();
+  const isHomepage = location.pathname === "/";
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,7 +32,9 @@ const Header = ({ onMenuClick }: HeaderProps) => {
             </h1>
           </Link>
           
-          <DropdownMenu>
+          <div className="flex items-center gap-3">
+            {isHomepage && <BackgroundMusic />}
+            <DropdownMenu>
             <DropdownMenuTrigger 
               onClick={onMenuClick}
               className="border border-primary/50 text-primary hover:bg-primary/10 hover:border-primary glow-cyan transition-all duration-300 rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-primary"
@@ -50,6 +56,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </div>
       </div>
     </header>

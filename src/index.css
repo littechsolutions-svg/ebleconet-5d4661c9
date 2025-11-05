@@ -177,17 +177,17 @@ All colors MUST be HSL.
   }
 
   .animate-storm-reveal {
-    animation: storm-reveal 8.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation: storm-reveal 5.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     opacity: 0.1;
   }
 
   @keyframes storm-reveal {
-    0%, 82% {
+    0%, 91% {
       opacity: 0.1;
       transform: translateY(30px) translateX(-20px) rotate(-3deg) scale(0.95);
       filter: blur(8px);
     }
-    90% {
+    95% {
       opacity: 0.7;
       filter: blur(2px);
     }
@@ -199,17 +199,17 @@ All colors MUST be HSL.
   }
 
   .animate-diagonal-unfold {
-    animation: diagonal-unfold 8.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: diagonal-unfold 5.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     opacity: 0.1;
   }
 
   @keyframes diagonal-unfold {
-    0%, 85% {
+    0%, 91% {
       opacity: 0.1;
       transform: translateX(-40px) translateY(-40px) rotate(-5deg) scale(0.9);
       filter: blur(5px);
     }
-    93% {
+    96% {
       opacity: 0.8;
       transform: translateX(5px) translateY(5px) rotate(1deg) scale(1.02);
     }
@@ -221,17 +221,17 @@ All colors MUST be HSL.
   }
 
   .animate-scatter-in {
-    animation: scatter-in 8.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    animation: scatter-in 5.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     opacity: 0.1;
   }
 
   @keyframes scatter-in {
-    0%, 84% {
+    0%, 91% {
       opacity: 0.1;
       transform: translateX(60px) translateY(-30px) rotate(8deg) scale(0.8);
       filter: blur(10px);
     }
-    92% {
+    95% {
       opacity: 0.9;
       filter: blur(1px);
     }
@@ -243,23 +243,23 @@ All colors MUST be HSL.
   }
 
   .animate-lightning-text {
-    animation: lightning-text 8s ease-out forwards;
+    animation: lightning-text 5.5s ease-out forwards;
     opacity: 0.1;
   }
 
   @keyframes lightning-text {
-    0%, 87% {
+    0%, 91% {
       opacity: 0.1;
       text-shadow: 0 0 0 transparent;
     }
-    90% {
+    93% {
       opacity: 1;
       text-shadow: 0 0 20px hsl(var(--primary)), 0 0 40px hsl(var(--primary) / 0.5);
     }
-    93% {
+    95% {
       opacity: 0.4;
     }
-    96% {
+    97% {
       opacity: 1;
       text-shadow: 0 0 15px hsl(var(--primary)), 0 0 30px hsl(var(--primary) / 0.4);
     }
@@ -280,24 +280,24 @@ All colors MUST be HSL.
 
   /* Pulse-glow animation - dims and glows all at once */
   .animate-pulse-glow {
-    animation: pulse-glow 8s ease-in-out forwards;
+    animation: pulse-glow 5.5s ease-in-out forwards;
     opacity: 0.1;
   }
 
   @keyframes pulse-glow {
-    0%, 80% {
+    0%, 87% {
       opacity: 0.1;
       text-shadow: 0 0 0 transparent;
     }
-    85% {
+    91% {
       opacity: 0.3;
       text-shadow: 0 0 10px hsl(var(--primary) / 0.3);
     }
-    90% {
+    94% {
       opacity: 1;
       text-shadow: 0 0 30px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--secondary) / 0.4);
     }
-    95% {
+    97% {
       opacity: 0.6;
       text-shadow: 0 0 15px hsl(var(--primary) / 0.4);
     }
@@ -309,21 +309,21 @@ All colors MUST be HSL.
 
   /* Shimmer-reveal animation */
   .animate-shimmer-reveal {
-    animation: shimmer-reveal 8.4s ease-out forwards;
+    animation: shimmer-reveal 5.5s ease-out forwards;
     opacity: 0.1;
   }
 
   @keyframes shimmer-reveal {
-    0%, 83% {
+    0%, 89% {
       opacity: 0.1;
       transform: translateY(20px);
       filter: blur(6px) brightness(0.5);
     }
-    88% {
+    93% {
       opacity: 0.5;
       filter: blur(3px) brightness(1.2);
     }
-    94% {
+    97% {
       opacity: 1;
       filter: blur(0) brightness(1.5);
     }
@@ -336,16 +336,16 @@ All colors MUST be HSL.
 
   /* Fade-in-wave animation */
   .animate-fade-in-wave {
-    animation: fade-in-wave 8.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: fade-in-wave 5.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     opacity: 0.1;
   }
 
   @keyframes fade-in-wave {
-    0%, 84% {
+    0%, 90% {
       opacity: 0.1;
       transform: translateY(40px) scale(0.98);
     }
-    92% {
+    96% {
       opacity: 0.8;
       transform: translateY(-5px) scale(1.01);
     }
@@ -357,17 +357,17 @@ All colors MUST be HSL.
 
   /* Spiral-in animation - no glow, just movement */
   .animate-spiral-in {
-    animation: spiral-in 7.8s ease-out forwards;
+    animation: spiral-in 5.5s ease-out forwards;
     opacity: 0.1;
   }
 
   @keyframes spiral-in {
-    0%, 81% {
+    0%, 88% {
       opacity: 0.1;
       transform: rotate(180deg) scale(0.5);
       filter: blur(8px);
     }
-    95% {
+    96% {
       opacity: 1;
       transform: rotate(-5deg) scale(1.05);
       filter: blur(0);
@@ -381,22 +381,22 @@ All colors MUST be HSL.
 
   /* Electric-flash animation - quick reveal */
   .animate-electric-flash {
-    animation: electric-flash 7.5s ease-in-out forwards;
+    animation: electric-flash 5.5s ease-in-out forwards;
     opacity: 0.1;
   }
 
   @keyframes electric-flash {
-    0%, 78% {
+    0%, 86% {
       opacity: 0.1;
     }
-    82% {
+    89% {
       opacity: 1;
       text-shadow: 0 0 40px hsl(var(--accent) / 0.8), 0 0 80px hsl(var(--accent) / 0.5);
     }
-    86% {
+    92% {
       opacity: 0.2;
     }
-    90% {
+    95% {
       opacity: 1;
       text-shadow: 0 0 25px hsl(var(--accent) / 0.6);
     }

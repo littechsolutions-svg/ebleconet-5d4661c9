@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
+import VideoEmbed from "@/components/VideoEmbed";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [loadingDuration, setLoadingDuration] = useState(15000);
+  const [loadingDuration, setLoadingDuration] = useState(13000);
 
   useEffect(() => {
     const hasVisited = localStorage.getItem('hasVisitedEblecoTrybe');
@@ -36,6 +37,7 @@ const Index = () => {
       
       <main className="pt-16">
         <HeroCard />
+        <VideoEmbed />
         <CTASection />
       </main>
       

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -14,6 +14,7 @@ import {
 import { useToast } from "@/hooks/use-toast";
 import { useState } from "react";
 import { z } from "zod";
+import SuccessPopup from "@/components/SuccessPopup";
 
 const onboardingSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -35,7 +36,9 @@ const onboardingSchema = z.object({
 
 const Onboarding = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -63,6 +66,20 @@ const Onboarding = () => {
     try {
       const validatedData = onboardingSchema.parse(data);
       
+      // Check for duplicate submission
+      const submissionKey = `ebleco_submission_${validatedData.email}`;
+      const hasSubmitted = localStorage.getItem(submissionKey);
+      
+      if (hasSubmitted) {
+        toast({
+          variant: "destructive",
+          title: "Already Registered",
+          description: "You have already signed up with this email. Thank you for your interest!",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
       const response = await fetch("https://formspree.io/f/mblanqjl", {
         method: "POST",
         headers: {
@@ -72,11 +89,19 @@ const Onboarding = () => {
       });
 
       if (response.ok) {
-        toast({
-          title: "Successfully submitted!",
-          description: "Thank you for joining the Ebleco Trybe. We'll be in touch soon.",
-        });
+        // Store submission in localStorage
+        localStorage.setItem(submissionKey, "true");
+        
+        // Show success popup
+        setShowSuccess(true);
+        
+        // Reset form
         e.currentTarget.reset();
+        
+        // Redirect after 5 seconds
+        setTimeout(() => {
+          navigate("/");
+        }, 5000);
       } else {
         throw new Error("Submission failed");
       }
@@ -84,7 +109,7 @@ const Onboarding = () => {
       if (error instanceof z.ZodError) {
         toast({
           variant: "destructive",
-          title: "Invalid information",
+          title: "Incomplete Form",
           description: error.errors[0].message,
         });
       } else {
@@ -100,7 +125,14 @@ const Onboarding = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8">
+    <>
+      {showSuccess && (
+        <SuccessPopup
+          message="Thank you for joining the Ebleco Trybe! Redirecting you to the homepage..."
+          onClose={() => setShowSuccess(false)}
+        />
+      )}
+      <div className="min-h-screen bg-background py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <Link to="/">
           <Button variant="ghost" className="mb-8 hover:text-primary">
@@ -330,6 +362,7 @@ const Onboarding = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
