@@ -7,11 +7,11 @@ const BackgroundMusic = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Create audio element with a calm ambient track
-    // Using a free 432Hz meditation music URL
-    const audio = new Audio("https://cdn.pixabay.com/audio/2022/05/13/audio_2f6f3b8558.mp3");
+    // Create audio element with a loud piano track
+    // Using a piano music URL
+    const audio = new Audio("https://cdn.pixabay.com/audio/2022/03/15/audio_c39f0a934e.mp3");
     audio.loop = true;
-    audio.volume = 0.5;
+    audio.volume = 0.8;
     audioRef.current = audio;
 
     return () => {

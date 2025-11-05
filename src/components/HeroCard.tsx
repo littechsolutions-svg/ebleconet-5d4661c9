@@ -60,7 +60,7 @@ const HeroCard = () => {
             
             {!showMessage ? (
               <>
-                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-8 tracking-tight" style={{ fontFamily: "'Futura', 'Helvetica Neue', sans-serif", color: 'white', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-center mb-8 tracking-tight" style={{ fontFamily: "'Blanka', 'Futura', 'Impact', 'Arial Black', sans-serif", color: 'white', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '900', textShadow: '0 0 20px rgba(255,255,255,0.3), 0 0 40px rgba(99,102,241,0.4)' }}>
                   intellect pro circle
                 </h2>
                 
