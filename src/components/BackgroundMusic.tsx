@@ -11,7 +11,7 @@ const BackgroundMusic = () => {
     // Using a free 432Hz meditation music URL
     const audio = new Audio("https://cdn.pixabay.com/audio/2022/05/13/audio_2f6f3b8558.mp3");
     audio.loop = true;
-    audio.volume = 0.2;
+    audio.volume = 0.5;
     audioRef.current = audio;
 
     return () => {

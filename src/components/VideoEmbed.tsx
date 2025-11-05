@@ -2,7 +2,7 @@ const VideoEmbed = () => {
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-gradient">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-8 text-white">
           Watch the Full Clip – Dr. Bruce Lipton on the Subconscious Mind
         </h2>
         
