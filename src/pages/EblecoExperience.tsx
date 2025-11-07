@@ -326,8 +326,8 @@ const EblecoExperience = () => {
                   value={currentMessage}
                   onChange={(e) => setCurrentMessage(e.target.value)}
                   placeholder="Type your reflection..."
-                  rows={2}
-                  className="flex-1 bg-background/50 border-border resize-none text-foreground"
+                  rows={1}
+                  className="flex-1 bg-background/50 border-border resize-none text-foreground text-sm"
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' && !e.shiftKey) {
                       e.preventDefault();
@@ -338,9 +338,9 @@ const EblecoExperience = () => {
                 <Button
                   type="submit"
                   size="icon"
-                  className="h-[68px] w-[68px] shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="h-10 w-10 shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
-                  <Send className="h-5 w-5" />
+                  <Send className="h-4 w-4" />
                 </Button>
               </div>
             </form>
