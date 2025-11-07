@@ -321,7 +321,7 @@ const EblecoExperience = () => {
             
             {/* Input Area */}
             <form onSubmit={handleSendMessage} className="border-t border-border p-4 bg-card">
-              <div className="flex gap-2">
+              <div className="flex gap-2 items-end">
                 <Textarea
                   value={currentMessage}
                   onChange={(e) => setCurrentMessage(e.target.value)}
@@ -338,7 +338,7 @@ const EblecoExperience = () => {
                 <Button
                   type="submit"
                   size="icon"
-                  className="h-auto aspect-square bg-primary hover:bg-primary/90 text-primary-foreground self-end"
+                  className="h-[68px] w-[68px] shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground"
                 >
                   <Send className="h-5 w-5" />
                 </Button>
