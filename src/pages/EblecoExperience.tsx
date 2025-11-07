@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Lock, Volume2, VolumeX } from "lucide-react";
+import { ArrowLeft, Lock, Volume2, VolumeX, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -136,7 +136,8 @@ const EblecoExperience = () => {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
-  const [personalNotes, setPersonalNotes] = useState("");
+  const [messages, setMessages] = useState<Array<{ id: string; text: string; timestamp: string }>>([]);
+  const [currentMessage, setCurrentMessage] = useState("");
 
   useEffect(() => {
     // Check if already unlocked
@@ -145,23 +146,16 @@ const EblecoExperience = () => {
       setIsUnlocked(true);
     }
 
-    // Load personal notes
-    const savedNotes = localStorage.getItem("ebleco_personal_notes");
-    if (savedNotes) {
-      setPersonalNotes(savedNotes);
+    // Load personal chat messages
+    const savedMessages = localStorage.getItem("ebleco_personal_chats");
+    if (savedMessages) {
+      try {
+        setMessages(JSON.parse(savedMessages));
+      } catch (error) {
+        console.error("Failed to parse messages:", error);
+      }
     }
   }, []);
-
-  useEffect(() => {
-    // Auto-save personal notes
-    const saveTimer = setTimeout(() => {
-      if (personalNotes !== null) {
-        localStorage.setItem("ebleco_personal_notes", personalNotes);
-      }
-    }, 2000);
-
-    return () => clearTimeout(saveTimer);
-  }, [personalNotes]);
 
   const handlePasskeySubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -172,6 +166,23 @@ const EblecoExperience = () => {
       setError("");
     } else {
       setError("Access Denied. Please contact your Ebleco mentor for verification.");
+    }
+  };
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (currentMessage.trim()) {
+      const newMessage = {
+        id: Date.now().toString(),
+        text: currentMessage.trim(),
+        timestamp: new Date().toLocaleString(),
+      };
+      
+      const updatedMessages = [...messages, newMessage];
+      setMessages(updatedMessages);
+      localStorage.setItem("ebleco_personal_chats", JSON.stringify(updatedMessages));
+      setCurrentMessage("");
     }
   };
 
@@ -278,27 +289,61 @@ const EblecoExperience = () => {
           </div>
         </section>
 
-        {/* Personal Notepad Section */}
+        {/* Personal Chat Room Section */}
         <section className="mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-8">
-            Your Personal Notepad
+          <h2 className="text-3xl sm:text-4xl font-bold text-white text-center mb-4">
+            My Notepad
           </h2>
+          <p className="text-center text-muted-foreground mb-8 max-w-2xl mx-auto">
+            🔒 All your reflections are saved in your personal chat room and can only be viewed with your access key
+          </p>
           
-          <div className="max-w-4xl mx-auto bg-card border border-border rounded-3xl p-8 sm:p-12 glow-card">
-            <Label htmlFor="personal-notes" className="text-lg text-white mb-4 block">
-              Write your reflections here (auto-saved to your device):
-            </Label>
-            <Textarea
-              id="personal-notes"
-              value={personalNotes}
-              onChange={(e) => setPersonalNotes(e.target.value)}
-              placeholder="Start writing your thoughts, reflections, and insights..."
-              rows={12}
-              className="bg-background/50 border-border resize-none text-foreground"
-            />
-            <p className="text-xs text-muted-foreground mt-4">
-              💾 Your notes are automatically saved to this device every few seconds
-            </p>
+          <div className="max-w-4xl mx-auto bg-card border border-border rounded-3xl overflow-hidden glow-card">
+            {/* Chat Messages Display */}
+            <div className="h-96 overflow-y-auto p-6 space-y-4 bg-background/30">
+              {messages.length === 0 ? (
+                <div className="flex items-center justify-center h-full">
+                  <p className="text-muted-foreground text-center">
+                    No reflections yet. Start by typing your thoughts below...
+                  </p>
+                </div>
+              ) : (
+                messages.map((message) => (
+                  <div key={message.id} className="flex justify-end">
+                    <div className="max-w-[80%] bg-primary/20 border border-primary/30 rounded-2xl rounded-tr-sm px-4 py-3">
+                      <p className="text-foreground whitespace-pre-wrap break-words">{message.text}</p>
+                      <p className="text-xs text-muted-foreground mt-1 text-right">{message.timestamp}</p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            
+            {/* Input Area */}
+            <form onSubmit={handleSendMessage} className="border-t border-border p-4 bg-card">
+              <div className="flex gap-2">
+                <Textarea
+                  value={currentMessage}
+                  onChange={(e) => setCurrentMessage(e.target.value)}
+                  placeholder="Type your reflection..."
+                  rows={2}
+                  className="flex-1 bg-background/50 border-border resize-none text-foreground"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSendMessage(e);
+                    }
+                  }}
+                />
+                <Button
+                  type="submit"
+                  size="icon"
+                  className="h-auto aspect-square bg-primary hover:bg-primary/90 text-primary-foreground self-end"
+                >
+                  <Send className="h-5 w-5" />
+                </Button>
+              </div>
+            </form>
           </div>
         </section>
       </div>
