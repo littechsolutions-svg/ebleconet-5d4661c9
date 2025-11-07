@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Header from "@/components/Header";
 import HeroCard from "@/components/HeroCard";
-import VideoEmbed from "@/components/VideoEmbed";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
@@ -37,7 +36,6 @@ const Index = () => {
       
       <main className="pt-16">
         <HeroCard />
-        <VideoEmbed />
         <CTASection />
       </main>
       

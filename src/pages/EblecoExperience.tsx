@@ -19,6 +19,7 @@ const VALID_PASSKEYS = [
 ];
 
 const VIDEO_IDS = [
+  "aMC6l8x6HI8", // Dr. Bruce Lipton on the Subconscious Mind
   "QJ04KyA4hP4",
   "yvjRa_o_l8E",
   "ga4d4ep0_cU",
