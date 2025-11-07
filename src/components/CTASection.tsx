@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const CTASection = () => {
   return (
@@ -19,9 +20,9 @@ const CTASection = () => {
             className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-8 py-6 text-lg rounded-full glow-cyan hover:glow-magenta transition-all duration-300 transform hover:scale-105"
             asChild
           >
-            <a href="https://t.me/+6OQwI1FqtZY5NDY0" target="_blank" rel="noopener noreferrer">
+            <Link to="/ebleco-experience">
               Join the Community
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
