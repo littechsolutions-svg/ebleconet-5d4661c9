@@ -112,15 +112,15 @@ const Onboarding = () => {
           title: "Incomplete Form",
           description: error.errors[0].message,
         });
+        setIsSubmitting(false);
       } else {
         toast({
           variant: "destructive",
-          title: "Submission failed",
-          description: "Please check your information and try again.",
+          title: "Error Signing Up",
+          description: "Please check your connection and try again.",
         });
+        setIsSubmitting(false);
       }
-    } finally {
-      setIsSubmitting(false);
     }
   };
 

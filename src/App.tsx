@@ -13,6 +13,7 @@ import Roadmap from "./pages/Roadmap";
 import Terms from "./pages/Terms";
 import AboutTrybe from "./pages/AboutTrybe";
 import Onboarding from "./pages/Onboarding";
+import EblecoExperience from "./pages/EblecoExperience";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/terms" element={<Terms />} />
           <Route path="/about-trybe" element={<AboutTrybe />} />
           <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/ebleco-experience" element={<EblecoExperience />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
